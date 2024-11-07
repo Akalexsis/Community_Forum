@@ -18,7 +18,7 @@ function App() {
       element: <CreatePost />
     },
     {
-      path: '/gallery',
+      path: '/events',
       element: <PostGallery />
     },
     {
@@ -32,7 +32,7 @@ function App() {
       <nav>
         <h1>Atlanta Events Page</h1>
         <Link to="/"> Home </Link>
-        <Link to="/gallery"> Events </Link>
+        <Link to="/events"> Events </Link>
         {/* in CSS, this should be a dif color to draw attention to it */}
         <Link to="/create/new"> Create Event </Link>
       </nav>
