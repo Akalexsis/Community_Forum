@@ -28,13 +28,15 @@ function App() {
   ])
 
   return (
-    <div>
+    <div className='App'>
       <nav>
         <h1>Atlanta Events Page</h1>
-        <Link to="/"> Home </Link>
-        <Link to="/events"> Events </Link>
-        {/* in CSS, this should be a dif color to draw attention to it */}
-        <Link to="/create/new"> Create Event </Link>
+        <div className="links">
+          <Link to="/"> Home </Link>
+          <Link to="/events"> Events </Link>
+          {/* in CSS, this should be a dif color to draw attention to it */}
+          <Link to="/create/new" id='create'> Create Event </Link>
+        </div>
       </nav>
       <div className="routes">
         {routes}
