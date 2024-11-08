@@ -10,7 +10,7 @@ const Home = () => {
     // get all events from api
     const getEvents =  async () => {
         // only want 4 upcoming events
-        const { data, error } = await supabase.from("posts").select().limit(4).order('date', { ascending: true });
+        const { data, error } = await supabase.from("posts").select().limit(4).order('date', { ascending: false });
         console.log(error);
         setEvents(data);
     }
@@ -22,9 +22,10 @@ const Home = () => {
     // increase like count on click
     const onLike = async (event) => {
         console.log(event);
-        // const likeCount = event.like++
-        // const { data, error } = await supabase.from("posts").update({likes: likeCount}).eq('id', event.id).select();
-        // console.log(data);
+        // update likes by 1
+        const likeCount = event.likes+1
+        const { data, error } = await supabase.from("posts").update({likes: likeCount}).eq('id', event.id).select();
+        console.log(data);
     }
 
     return(
@@ -45,16 +46,17 @@ const Home = () => {
                 <h2> View Upcoming Events </h2>
                 {/* ternary operator to decide what to render if no posts yet */}
                 { events && events.length === 0 ? <div> No posts yet! </div> : 
-                    ( events && events.map((event) => {
-                        <div className="post">
+                    ( events && events.map((event) => (
+                        <div className="post" key={event.id}>
                             <h3>{event.name}</h3>
-                            {/* <p>{event.date}</p>
-                            <p>{event.location}</p> */}
+                            <p>{event.date}</p>
+                            <p>{event.location}</p> 
                             {/* go to the info page and pass data along to that page */}
-                            {/* <Link to={`/info/${event.id}`} state={event}> View Info </Link>
-                            <button onClick={() => onLike(event)}> Likes: {event.likes} </button> */}
+                            <Link to={`/info/${event.id}`} state={event}> View Info </Link>
+                            {/* <Link to={`/create/${event.id}`} state={event}> Edit </Link> */}
+                            <button onClick={() => onLike(event)}> Likes: {event.likes} </button>
                         </div>
-                    }) )
+                    )) )
                 }
                 <Link to='/events'> View Events </Link>
             </div>

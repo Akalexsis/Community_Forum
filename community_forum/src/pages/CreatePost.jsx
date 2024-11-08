@@ -1,16 +1,33 @@
 import React from 'react';
 import supabase from '../Client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const CreatePost = () => {
+    // stores info of previous user input
+    const location = useLocation();
+    const formData  = location.state;
+
     // store user input to make API call to update database
     const [ userInput, setUserInput ] = useState({
-        name: '',
-        date: '',
-        location: '',
-        desc: '',
-        likes: 0
-    });
+            name: '',
+            date: '',
+            location: '',
+            desc: '',
+            likes: 0
+        });
+
+    // update userInput if there is data
+    const updateForm = () => {
+        if (formData) setUserInput(
+        {
+            name: formData.name,
+            date: formData.date,
+            location: formData.location,
+            desc: formData.desc, likes: formData.likes
+        })}
+    useEffect(() => { updateForm() }, [])
+
     console.log(userInput)
 
     // updates user input as input entered
@@ -21,10 +38,20 @@ const CreatePost = () => {
     const onCreate = async (e) => {
         e.preventDefault();
 
-        // make API call to database to make new event post
-        const { data, error } = await supabase.from('posts').insert(userInput).select();
-        console.log(data)
-        console.log(error)
+        // if content in formData, update event, else - create new event
+        if (formData) {
+            const { data, error } = await supabase.from('posts').update(userInput).eq('id', formData.id).select();
+            console.log(data)
+            console.log(error)
+            alert('Your post has been updated!')
+            
+        } else {
+            // make API call to database to make new event post
+            const { data, error } = await supabase.from('posts').insert(userInput).select();
+            console.log(data)
+            console.log(error)
+            alert('Your post has been created!')
+        }
         // clear form
         setUserInput({ name: '', date: '', location: '', desc: '', likes: 0 });
     }
