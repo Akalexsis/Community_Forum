@@ -1,4 +1,4 @@
-:root {
+/* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -10,22 +10,49 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+} */
+body {
+  font-size: 18px;
 }
+
+/* a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+a:visited {
+  color: white;
+} */
 
 .home .about-container{
   width: 100%;
   height: 100vh;
   display: flex;
-  background-color: rgb(242,193,85);
+  background-image: url('./assets/atlanta.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
   align-items: center;
+  color: white;
 }
 
 .home .about-container .about-info{
+  height: 100%;
   text-align: left;
-  padding: 0 2rem 0 1rem;
+  background-color: rgb(122 , 93, 85, 0.5);
+  padding: 0 4rem;
+  
 }
 
 .home .about-container .about-info h1{
   font-size: 3rem;
-  color: rgb(218, 142, 58);
+  font-size: 72px;
+  color: #F38720;
+  top: 15rem;
+}
+.home .about-container .about-info a{
+  padding: 0 0.625rem;
+  background-color: #FAB446;
+  padding: 7px 10px;
+  border-radius: 0.3125rem;
 }

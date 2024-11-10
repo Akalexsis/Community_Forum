@@ -30,20 +30,16 @@ const Home = () => {
 
     return(
         <div className="home">
-            <div className="about-container">
-                <div className="about-info">
+            <div className="about-container" role='organize information'>
+                <div className="about-info" >
                     {/* title should be short, descriptive, and large */}
                     <h1> Welcome to Atlanta! </h1>
-                    <p> Do you currently live in or around Atlanta and hoping to try something new? Did you just move here and 
-                        are trying to meet new people? Or are you visiting from out of town and hoping to try something new?
-                        Well this forum is just for you! Here, you can post any event that you are hosting for those within the city
-                        to attend. If you are interested in an event, be sure to like it and leave a comment if you would like to
-                        learn more. Click the 'View Events' button to start browsing!                
+                    <p> Live in Atlanta and hoping to try something new? Just moved here and trying to meet new people? 
+                        Visiting from out of town and hoping to explore the city? This page is just for you! Browse around 
+                        to find and attend upcoming events. If you are interested in an event, be sure to like it and leave 
+                        a comment. Click the 'View Events' button to start browsing!                
                     </p>
                     <Link to='/events'> View Events </Link>
-                </div>
-                <div className="about-img">
-                    <img src="src/assets/home-img.jpg" alt="friends laughing in coffee shop" />
                 </div>
             </div>
             <div className="home-events">

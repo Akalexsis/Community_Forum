@@ -30,7 +30,7 @@ function App() {
   return (
     <div className='App'>
       <nav>
-        <h1>Atlanta Events Page</h1>
+        <h1>Explore Atlanta</h1>
         <div className="links">
           <Link to="/"> Home </Link>
           <Link to="/events"> Events </Link>
