@@ -6,13 +6,19 @@ import supabase from '../Client';
 const Home = () => {
     // store all events
     const [ events, setEvents ] = useState();
+    // sets the like count for each event
+    const [ likes, setLikes ] = useState([{
+        likes: 0
+    }])
 
     // get all events from api
     const getEvents =  async () => {
         // only want 4 upcoming events
-        const { data, error } = await supabase.from("posts").select().limit(4).order('date', { ascending: false });
-        console.log(error);
+        const { data, error } = await supabase.from("posts").select().limit(4).order('date', { ascending: true });
+        console.log(data);
         setEvents(data);
+        // update likes and ensure every like is stored in likes
+        // setLikes(likes => [...likes, {likes: events.likes} ])
     }
     console.log(events)
 
@@ -21,11 +27,12 @@ const Home = () => {
 
     // increase like count on click
     const onLike = async (event) => {
-        console.log(event);
+        
         // update likes by 1
         const likeCount = event.likes+1
         const { data, error } = await supabase.from("posts").update({likes: likeCount}).eq('id', event.id).select();
         console.log(data);
+        setLikes(data)
     }
 
     return(
@@ -43,23 +50,29 @@ const Home = () => {
                 </div>
             </div>
             <div className="home-events">
-                {/* large but smaller than title */}
                 <h2> View Upcoming Events </h2>
-                {/* ternary operator to decide what to render if no posts yet */}
+                <div className="posts-container">
                 { events && events.length === 0 ? <div> No posts yet! </div> : 
                     ( events && events.map((event) => (
                         <div className="post" key={event.id}>
                             <h3>{event.name}</h3>
-                            <p>{event.date}</p>
                             <p>{event.location}</p> 
+                            <p>{event.date}</p>
+                            <div className='image'>
+                                image will appear here
+                            </div>
                             {/* go to the info page and pass data along to that page */}
                             <Link to={`/info/${event.id}`} state={event}> View Info </Link>
+                            {/* time post was made */}
+                            <p id='timestamp'>{event.created_at}</p>
                             {/* <Link to={`/create/${event.id}`} state={event}> Edit </Link> */}
+                            {/* should go at top next to name */}
                             <button onClick={() => onLike(event)}> Likes: {event.likes} </button>
                         </div>
                     )) )
                 }
-                <Link to='/events'> View Events </Link>
+                </div>
+                <Link to='/events' id='view-events'> View Events </Link>
             </div>
         </div>
     )

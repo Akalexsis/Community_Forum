@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom';
 const CreatePost = () => {
     // stores info of previous user input
     const location = useLocation();
+    // stores the event object
     const formData  = location.state;
 
     // store user input to make API call to update database
@@ -17,7 +18,7 @@ const CreatePost = () => {
             likes: 0
         });
 
-    // update userInput if there is data
+    // prefill form if data already in formData
     const updateForm = () => {
         if (formData) setUserInput(
         {
@@ -35,22 +36,27 @@ const CreatePost = () => {
         setUserInput({...userInput, [e.target.name]: e.target.value});
     }
 
+    // make POST or PUT request to supabase
     const onCreate = async (e) => {
         e.preventDefault();
 
-        // if content in formData, update event, else - create new event
-        if (formData) {
-            const { data, error } = await supabase.from('posts').update(userInput).eq('id', formData.id).select();
-            console.log(data)
-            console.log(error)
-            alert('Your post has been updated!')
-            
-        } else {
-            // make API call to database to make new event post
-            const { data, error } = await supabase.from('posts').insert(userInput).select();
-            console.log(data)
-            console.log(error)
-            alert('Your post has been created!')
+        try {
+            // if content in formData, update event, else - create new event
+            if (formData) {
+                const { data, error } = await supabase.from('posts').update(userInput).eq('id', formData.id).select();
+                // console.log(data)
+                console.log(error)
+                alert('Your post has been updated!');
+                
+            } else {
+                // make API call to database to make new event post
+                const { data, error } = await supabase.from('posts').insert(userInput).select();
+                // console.log(data)
+                console.log(error)
+                alert('Your post has been created!');
+            }
+        } catch (err) {
+            alert('There was an error when making your post. Please try again.');
         }
         // clear form
         setUserInput({ name: '', date: '', location: '', desc: '', likes: 0 });
