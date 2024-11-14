@@ -14,7 +14,7 @@ const Home = () => {
     // get all events from api
     const getEvents =  async () => {
         // only want 4 upcoming events
-        const { data, error } = await supabase.from("posts").select().limit(4).order('date', { ascending: true });
+        const { data, status } = await supabase.from("posts").select().limit(4).order('date', { ascending: true });
         console.log(data);
         setEvents(data);
         // update likes and ensure every like is stored in likes
@@ -30,7 +30,7 @@ const Home = () => {
         
         // update likes by 1
         const likeCount = event.likes+1
-        const { data, error } = await supabase.from("posts").update({likes: likeCount}).eq('id', event.id).select();
+        const { data, status } = await supabase.from("posts").update({likes: likeCount}).eq('id', event.id).select();
         console.log(data);
         setLikes(data)
     }

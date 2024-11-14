@@ -7,6 +7,8 @@ const ViewPost = () => {
     return(
         <div className="post-info">
         View more post info page
+        {/* edit post */}
+        <Link to={`/create/${event.id}`} state={event}> Edit </Link>
         </div>
     )
 }
