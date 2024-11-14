@@ -17,7 +17,6 @@ const PostGallery = () => {
     const getEvents =  async () => {
         // get and display all events
         const { data, status } = await supabase.from("posts").select().order('date', { ascending: true });
-        console.log(data);
         setEvents(data);
         // update likes and ensure every like is stored in likes
         // setLikes(likes => [...likes, {likes: events.likes} ])
@@ -54,23 +53,37 @@ const PostGallery = () => {
     }
     useEffect(() => { onSearch() }, []);
 
+    // re-orders posts based on like count and date
+    const onFilter = async (e, column, order) => {
+        e.preventDefault();
+        // column - name of column to order, order - boolean value that controls order of posts
+        const { data, status } = await supabase.from("posts").select().order(column, { ascending: order });
+        // re-renders posts based on order of filter
+        setEvents(data);
+    }
+
     return(
         <div className="post-gallery">
             {/* search for events */}
             <form className='search'>
                 <input type="text" name='search' placeholder='Search events' value={search} onChange={ (e) =>  setSearch(e.target.value) }/>
-                <button onClick={onSearch}> Search </button>
-                <button onClick={getEvents}> Reset Filters </button>
+                <button onClick={onSearch} id='search-bttn'> Search </button>
+                <button onClick={getEvents} id='reset-bttn'> Reset Filters </button>
                 { search==='' ? <div></div> : <h2> Showing Results for {search} </h2>}
             </form>
             <div className="filters">
                 <h3> Filters </h3>
-                <h3> Likes: </h3>
-                <button> Most </button>
-                <button> Least </button>
-                <h3> Date: </h3>
-                <button> Ascending </button>
-                <button> Descending </button>
+                <div id='likes'>
+                    <h3> Likes: </h3>
+                    <button onClick={(e) => onFilter(e, 'likes', false)}> Most </button>
+                    <button onClick={(e) => onFilter(e,'likes', true)}> Least </button>
+                </div>
+                <div className="date">
+                    <h3> Date: </h3>
+                    <button onClick={(e) => onFilter(e,'date', true)}> Soonest </button>
+                    <button onClick={(e) => onFilter(e,'date', false)}> Latest </button>
+                </div>
+                
             </div>
             {/* display events */}
             <div className="posts-container">

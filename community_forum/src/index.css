@@ -135,7 +135,27 @@ h3 {
   
 }
 
-.search button {
+.search #search-bttn {
   font-size: 18px;
   border-radius: 1rem;
+}
+
+.search #search-bttn:hover {
+  cursor: pointer;
+}
+
+.search #reset-bttn {
+  font-size: 18px;
+  background: none;
+  border: none;
+}
+
+.search #reset-bttn:hover {
+  cursor: pointer;
+  text-decoration: 1px solid black underline;
+  font-weight: bold;
+}
+
+.filters {
+  display: inline-block;
 }
