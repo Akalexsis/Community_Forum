@@ -38,7 +38,7 @@ h3 {
   width: 100%;
   height: 100vh;
   display: flex;
-  background-image: url('./assets/atlanta.jpeg');
+  background-image: url('./assets/atlanta-bkg.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   align-items: center;
@@ -132,12 +132,14 @@ h3 {
   width: 35rem;
   border-radius: 1rem;
   padding: 2px 0;
-  
+  border: 0.5px solid black;
 }
 
 .search #search-bttn {
   font-size: 18px;
   border-radius: 1rem;
+  border: 0.5px solid black;
+  background-color: #F3AD21;
 }
 
 .search #search-bttn:hover {
@@ -152,10 +154,22 @@ h3 {
 
 .search #reset-bttn:hover {
   cursor: pointer;
-  text-decoration: 1px solid black underline;
+  text-decoration: 1px solid #F3AD21 underline;
   font-weight: bold;
+  color: #F3AD21;
 }
 
+/* FILTERS */
 .filters {
   display: inline-block;
+}
+
+.filters button {
+  font-size: 1rem;
+}
+
+.filters button:focus{
+  background-color: #F3AD21;
+  color: white;
+  border: 2px solid #F38720;
 }

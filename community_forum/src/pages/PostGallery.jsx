@@ -78,7 +78,7 @@ const PostGallery = () => {
                     <button onClick={(e) => onFilter(e, 'likes', false)}> Most </button>
                     <button onClick={(e) => onFilter(e,'likes', true)}> Least </button>
                 </div>
-                <div className="date">
+                <div id="date">
                     <h3> Date: </h3>
                     <button onClick={(e) => onFilter(e,'date', true)}> Soonest </button>
                     <button onClick={(e) => onFilter(e,'date', false)}> Latest </button>
