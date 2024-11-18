@@ -63,7 +63,7 @@ const CreatePost = () => {
     }
 
     return(
-        <div className="create">
+        <div role='presentation' className="create">
             <form className='create-event'>
                 <label htmlFor="name"> Name </label>
                 <input type="text" name='name' placeholder='Name of event' value={userInput.name} onChange={handleInput} required/>

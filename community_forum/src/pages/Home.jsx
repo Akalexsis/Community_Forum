@@ -36,7 +36,7 @@ const Home = () => {
     }
 
     return(
-        <div className="home">
+        <div role='presentation' className="home">
             <div className="about-container" role='organize information'>
                 <div className="about-info" >
                     {/* title should be short, descriptive, and large */}
@@ -49,7 +49,7 @@ const Home = () => {
                     <Link to='/events'> View Events </Link>
                 </div>
             </div>
-            <div className="home-events">
+            <div role='presentation' className="home-events">
                 <h2> View Upcoming Events </h2>
                 <div className="posts-container">
                 { events && events.length === 0 ? <div> No posts yet! </div> : 

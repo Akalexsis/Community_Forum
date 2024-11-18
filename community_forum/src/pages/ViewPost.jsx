@@ -4,10 +4,18 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 const ViewPost = () => {
+    // gathers information on event currently viewing
     const location = useLocation();
     const post = location.state;
     console.log(post)
 
+    // create and update comment
+    const [ comment, setComment ] = useState( { author: '', text: '' } );
+    console.log(comment)
+    // store and display all comments
+    const [ comments, setComments ] = useState([]);
+
+    // deleting posts should display a delete message
     const onDelete = async (e) => {
         e.preventDefault();
         // delete post by post id
@@ -21,8 +29,16 @@ const ViewPost = () => {
         }
     }
 
+    // submits comments to page
+    const onComment = (e) => { 
+        e.preventDefault();
+        setComments( [...comments, comment] );
+        // reset input field
+        setComment( { author: '', text: '' } );
+    }
+
     return(
-        <div className="post-desc">
+        <div role='presentation' className="post-desc">
             <Link to='/events'> Back </Link>
             <div className="post-info">
                 <h3> { post.name } </h3>
@@ -31,7 +47,7 @@ const ViewPost = () => {
                 <p> { post.desc } </p>
             </div>
             
-            <div className='actions-bar'>
+            <div role='presentation' className='actions-bar'>
                 {/* like post */}
                 <button> Likes: {post.likes} </button>
                 {/* go to comments */}
@@ -41,8 +57,19 @@ const ViewPost = () => {
                 {/* delete post */}
                 <button onClick={onDelete}> Delete </button>
             </div>
-            <div className="comments" id='comment-section'>
-                <p> No comments here yet! </p>
+            <div role='presentation' id='create-comment'>
+                <form className='comments'>
+                    <label htmlFor="author"> Name </label>
+                    <input type="text" name='author' placeholder='Enter your name here' value={comment.author} onChange={
+                        (e) => setComment({...comment, [e.target.name]: e.target.value }) } />
+                    <label htmlFor="text"> Comment </label>
+                    <input type="text" name='text' placeholder='Enter your thoughts ...' value={comment.text} onChange={
+                        (e) => setComment({...comment, [e.target.name]: e.target.value }) } />
+                    <button onClick={onComment}> Comment! </button>
+                </form>
+            </div>
+            <div role='presentation' className='comments-section'>
+                
             </div>
         </div>
     )

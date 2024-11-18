@@ -63,7 +63,7 @@ const PostGallery = () => {
     }
 
     return(
-        <div className="post-gallery">
+        <div role='presentation' className="post-gallery">
             {/* search for events */}
             <form className='search'>
                 <input type="text" name='search' placeholder='Search events' value={search} onChange={ (e) =>  setSearch(e.target.value) }/>
@@ -71,7 +71,7 @@ const PostGallery = () => {
                 <button onClick={getEvents} id='reset-bttn'> Reset Filters </button>
                 { search==='' ? <div></div> : <h2> Showing Results for {search} </h2>}
             </form>
-            <div className="filters">
+            <div role='presentation' className="filters">
                 <h3> Filters </h3>
                 <div id='likes'>
                     <h3> Likes: </h3>
@@ -86,7 +86,7 @@ const PostGallery = () => {
                 
             </div>
             {/* display events */}
-            <div className="posts-container">
+            <div role='presentation' className="posts-container">
                 { events && events.length === 0 ? <div> No posts found! </div> : ( events && events.map((event) => (
                     <div className="post" key={event.id}>
                         <h3>{event.name}</h3>
