@@ -1,5 +1,6 @@
 import React from 'react';
 import supabase from '../Client';
+import './create.css'
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
@@ -64,7 +65,9 @@ const CreatePost = () => {
 
     return(
         <div role='presentation' className="create">
+            
             <form className='create-event'>
+                <h2>Create Your Event!</h2>
                 <label htmlFor="name"> Name </label>
                 <input type="text" name='name' placeholder='Name of event' value={userInput.name} onChange={handleInput} required/>
                 <label htmlFor="date"> Date </label>
@@ -73,7 +76,7 @@ const CreatePost = () => {
                 <input type="text" name='location' placeholder='Event location' value={userInput.location} onChange={handleInput} required/>
                 <label htmlFor="desc"> Description </label>
                 <input type="text" name='desc' placeholder='Description' value={userInput.desc} onChange={handleInput} required/>
-                <button onClick={onCreate}> Create Event! </button>
+                <button onClick={onCreate}> Create </button>
             </form>
         </div>
     )

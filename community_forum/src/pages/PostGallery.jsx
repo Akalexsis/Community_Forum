@@ -1,6 +1,6 @@
 import React from 'react';
 import supabase from '../Client';
-import '../post.css';
+import './post.css';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -95,12 +95,13 @@ const PostGallery = () => {
                         <div className='image'>
                             image will appear here
                         </div>
+                        <button onClick={() => onLike(event)}> Likes: {event.likes} </button>
                         {/* go to the info page and pass data along to that page */}
                         <Link to={`/info/${event.id}`} state={event}> View Info </Link>
                         {/* time post was made */}
                         <p id='timestamp'>{event.created_at}</p>
                         {/* should go at top next to name */}
-                        <button onClick={() => onLike(event)}> Likes: {event.likes} </button>
+                        
                     </div>
                     )))
                 }

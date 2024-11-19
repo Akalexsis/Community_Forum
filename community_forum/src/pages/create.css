@@ -1,0 +1,45 @@
+.create{
+    width: 100vw;
+    height: 100vh;
+    background-color: #FDEBC5;
+}
+
+/* form */
+.create-event {
+    position: relative;
+    top: 10rem;
+    margin: 0 auto;
+    width: 50vw;
+    height: 55vh;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 2rem 2rem; 
+    border: 3px solid #F38720;
+    border-radius: 1.25rem;
+    background-color: white;
+}
+
+h2 {
+    text-align: center;
+    margin: 0;
+}
+
+input{
+    margin-bottom: 1rem;
+    font-size: 18px;
+}
+
+label{
+    font-size: 20px;
+}
+
+button {
+    background-color: #F38720;
+    font-size: 18px;
+    margin: 0 auto;
+    /* 10px */
+    padding: 7px 10px;
+    margin-bottom: 5px;
+    border: 0.05px solid #F38720;
+    border-radius: 0.3125rem;
+}
