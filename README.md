@@ -43,14 +43,13 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<a href=''> Walkthrough Video </a>
+<a href='https://www.dropbox.com/scl/fi/oviry2rlzi9k9hnodjamx/K_Thornton_WEB102_Final.mp4?rlkey=zkj0ti2hz3amxihh2tg43nb48&st=821dtq66&dl=0'> Walkthrough Video </a>
 
 <!-- Replace this with whatever GIF tool you used! -->
 GIF created with Zoom
 
 ## Notes
-
-Describe any challenges encountered while building the app.
+- Difficulties determining how to upload images for users
 
 ## License
 

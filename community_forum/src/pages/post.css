@@ -32,8 +32,7 @@
 
   .post button {
     font-size: 16px;
-    background-color: #DACEC4;
-    border: 0.125px solid #d6782b;
+    background-color: #B87359;
     padding: 3px 10px;
     border-radius: 0.125rem;
     margin-right: 5px;
@@ -91,10 +90,22 @@
 
 /* FILTERS */
 .filters {
+  border-bottom: 1px solid gray;
+  border-top: 1px solid gray;
+  padding: 0 15%;
+}
+
+.filters div{
+  display: inline-block;
+  margin: 0 5rem;
+}
+
+.filters h3{
   display: inline-block;
 }
 
 .filters button {
+  display: inline-block;
   font-size: 1rem;
 }
 
