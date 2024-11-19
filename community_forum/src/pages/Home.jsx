@@ -7,32 +7,31 @@ const Home = () => {
     // store all events
     const [ events, setEvents ] = useState();
     // sets the like count for each event
-    const [ likes, setLikes ] = useState([{
-        likes: 0
-    }])
+    const [ likes, setLikes ] = useState(0)
 
     // get all events from api
     const getEvents =  async () => {
-        // only want 4 upcoming events
+        // only want 4 upcoming events on home page
         const { data, status } = await supabase.from("posts").select().limit(4).order('date', { ascending: true });
-        console.log(data);
+        // console.log(data);
         setEvents(data);
+        
         // update likes and ensure every like is stored in likes
         // setLikes(likes => [...likes, {likes: events.likes} ])
     }
-    console.log(events)
+    console.log(likes)
 
     // make only one API call
     useEffect(() => { getEvents() }, []);
 
     // increase like count on click
-    const onLike = async (event) => {
-        
+    const onLike = async (e, event) => {
+        e.preventDefault()
         // update likes by 1
-        const likeCount = event.likes+1
-        const { data, status } = await supabase.from("posts").update({likes: likeCount}).eq('id', event.id).select();
+        // const likeCount = event.likes+1
+        const { data, status } = await supabase.from("posts").update({likes: event.likes+1}).eq('id', event.id).select();
         console.log(data);
-        setLikes(data)
+        setLikes(event.likes+1)
     }
 
     return(
@@ -51,7 +50,7 @@ const Home = () => {
             </div>
             <div role='presentation' className="home-events">
                 <h2> View Upcoming Events </h2>
-                <div className="posts-container">
+                <div id="home">
                 { events && events.length === 0 ? <div> No posts yet! </div> : 
                     ( events && events.map((event) => (
                         <div className="post" key={event.id}>
@@ -62,12 +61,10 @@ const Home = () => {
                                 image will appear here
                             </div>
                             {/* go to the info page and pass data along to that page */}
+                            <button onClick={() => onLike(event)}> Likes: {event.likes} </button>
                             <Link to={`/info/${event.id}`} state={event}> View Info </Link>
                             {/* time post was made */}
                             <p id='timestamp'>{event.created_at}</p>
-                            {/* <Link to={`/create/${event.id}`} state={event}> Edit </Link> */}
-                            {/* should go at top next to name */}
-                            <button onClick={() => onLike(event)}> Likes: {event.likes} </button>
                         </div>
                     )) )
                 }

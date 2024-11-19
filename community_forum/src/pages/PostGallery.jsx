@@ -1,5 +1,6 @@
 import React from 'react';
 import supabase from '../Client';
+import '../post.css';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -83,7 +84,6 @@ const PostGallery = () => {
                     <button onClick={(e) => onFilter(e,'date', true)}> Soonest </button>
                     <button onClick={(e) => onFilter(e,'date', false)}> Latest </button>
                 </div>
-                
             </div>
             {/* display events */}
             <div role='presentation' className="posts-container">

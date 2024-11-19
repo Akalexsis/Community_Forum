@@ -20,13 +20,13 @@ const CreatePost = () => {
 
     // prefill form if data already in formData
     const updateForm = () => {
-        if (formData) setUserInput(
-        {
-            name: formData.name,
-            date: formData.date,
-            location: formData.location,
-            desc: formData.desc, likes: formData.likes
-        })}
+        if (formData) {
+            setUserInput( { name: formData.name, date: formData.date, location: formData.location, desc: formData.desc, 
+                likes: formData.likes } )
+        } else {
+            setUserInput( { name: '', date: '', location: '', desc: '', likes: 0 } )
+        }
+    }
     useEffect(() => { updateForm() }, [])
 
     console.log(userInput)
