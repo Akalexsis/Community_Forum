@@ -40,8 +40,8 @@ const PostGallery = () => {
             // if user searches for a value display, else - re-render
             if (search) {
                 // if search has a value, find posts in the database with it and return it
-                const { data, status } = await supabase.from("posts").select("name").textSearch("name", search)
-                console.log(status)
+                const { data, status } = await supabase.from("posts").select('name').textSearch("name", search).select();
+                console.log(data)
                 // re-render the events based on results of filter
                 setEvents(data);
             } else {

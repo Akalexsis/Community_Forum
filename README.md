@@ -20,12 +20,13 @@ This web app allows users to create, serach, and view upcoming events happening 
 - Save comments in database to view them after page refresh
 - Allow users to upload an image or gif
 - Allow users to create their own account so they can have more control over their posts
+- Reformat website so that users can view site from a phone or tablet
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<a href='https://www.dropbox.com/scl/fi/oviry2rlzi9k9hnodjamx/K_Thornton_WEB102_Final.mp4?rlkey=zkj0ti2hz3amxihh2tg43nb48&st=821dtq66&dl=0'> Walkthrough Video </a>
+<a href='https://www.dropbox.com/scl/fi/odwadi7u7981dx2znnbvy/K_Thornton_WEB102_Final.mp4?rlkey=bh8o5c1ue547cufy976f5juub&st=zq4h3moe&dl=0'> Walkthrough Video </a>
 
 
 ## Notes
