@@ -1,6 +1,6 @@
 import React from 'react';
 import supabase from '../Client';
-import './info.css';
+import './viewPost.css';
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -39,36 +39,45 @@ const ViewPost = () => {
         setComment( { author: '', text: '' } );
     }
 
+    const handleComment = (e) => {
+        setComment({...comment, [e.target.name]: e.target.value })
+    }
     return(
-        <div role='presentation' className="post-desc">
+        <div role='presentation' className="post-actions">
             <Link to='/events'> Back </Link>
             {/* displays all post information */}
-            <div className="post-info">
-                <h3> { post.name } </h3>
-                <p> { post.date } </p>
-                <p> { post.location } </p>
-                <p> { post.desc } </p>
+            <div className='view-post' role='presentation'>
+                <div className="post-data">
+                    <div className="post-info" role='presentation'>
+                        <h3> { post.name } </h3>
+                        <p> { post.date } </p>
+                        <p> { post.location } </p>
+                    </div>
+                    <div className="post-desc" role='presentation'>
+                        <img src={ post.image } alt="User should upload an image here" />
+                        <p> { post.desc }</p>
+                    </div>
+                </div>
+                {/*  ACTION BAR - actions to take on page like add comment, like post, edit and delete post */}
+                <div role='presentation' className='actions-bar'>
+                    {/* like post */}
+                    <button> Likes: {post.likes} </button>
+                    {/* go to comments */}
+                    <p> Comments </p>
+                    {/* edit post */}
+                    <Link to={`/create/${post.id}`} state={post}> Edit </Link>
+                    {/* delete post */}
+                    <button onClick={onDelete} id='delete'> Delete </button>
+                </div>
             </div>
-            {/*  actions to take on page like add comment, like post, edit and delete post */}
-            <div role='presentation' className='actions-bar'>
-                {/* like post */}
-                <button> Likes: {post.likes} </button>
-                {/* go to comments */}
-                <p> Comments </p>
-                {/* edit post */}
-                <Link to={`/create/${post.id}`} state={post}> Edit </Link>
-                {/* delete post */}
-                <button onClick={onDelete}> Delete </button>
-            </div>
-            {/* form to create an post comment */}
+            
+            {/* COMMENTS - form for users to add comments*/}
             <div role='presentation' id='create-comment'>
                 <form className='comments'>
                     <label htmlFor="author"> Name </label>
-                    <input type="text" name='author' placeholder='Enter your name here' value={comment.author} onChange={
-                        (e) => setComment({...comment, [e.target.name]: e.target.value }) } />
+                    <input type="text" name='author' placeholder='Enter your name here' value={comment.author} onChange={handleComment} />
                     <label htmlFor="text"> Comment </label>
-                    <input type="text" name='text' placeholder='Enter your thoughts ...' value={comment.text} onChange={
-                        (e) => setComment({...comment, [e.target.name]: e.target.value }) } />
+                    <input id='comment-txt' type="text" name='text' placeholder='Enter your thoughts ...' value={comment.text} onChange={handleComment} />
                     <button onClick={onComment}> Comment! </button>
                 </form>
             </div>
@@ -76,7 +85,7 @@ const ViewPost = () => {
             <div role='presentation' className='comments-section'>
                 { comments.length == 0 ? <p> No comments yet. Start the discussion! </p> : (
                     comments && comments.map((comment) => 
-                    <div role='presentation'>
+                    <div className="comment-content" role='presentation'>
                         <h4> {comment.author} </h4>
                         <p> {comment.text} </p>
                     </div> )
