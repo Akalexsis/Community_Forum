@@ -92,8 +92,8 @@ const PostGallery = () => {
                         <h3>{event.name}</h3>
                         <p>{event.location}</p> 
                         <p>{event.date}</p>
-                        <div className='image'>
-                            image will appear here
+                        <div className='image-container'>
+                            <img src={event.image} alt="Users should upload images here" />
                         </div>
                         <button onClick={() => onLike(event)}> Likes: {event.likes} </button>
                         {/* go to the info page and pass data along to that page */}

@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import supabase from '../Client';
+import './post.css';
 
 const Home = () => {
     // store all events
@@ -57,8 +58,8 @@ const Home = () => {
                             <h3>{event.name}</h3>
                             <p>{event.location}</p> 
                             <p>{event.date}</p>
-                            <div className='image'>
-                                image will appear here
+                            <div className='image-container'>
+                                <img src={event.image} alt="Users should upload images here" />
                             </div>
                             {/* go to the info page and pass data along to that page */}
                             <button onClick={() => onLike(event)}> Likes: {event.likes} </button>

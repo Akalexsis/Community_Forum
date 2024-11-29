@@ -7,10 +7,10 @@
 /* form */
 .create-event {
     position: relative;
-    top: 10rem;
+    top: 3rem;
     margin: 0 auto;
     width: 50vw;
-    height: 55vh;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     padding: 1rem 2rem 2rem; 

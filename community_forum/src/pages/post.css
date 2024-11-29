@@ -3,7 +3,8 @@
     align-items: center;
     justify-content: left;
     flex-wrap: wrap;
-    margin: 2rem 0;
+    margin: 0 auto;
+    padding: 0 2rem;
   }
   
   /* each post container */
@@ -43,11 +44,17 @@
     color: #DACEC4;
   }
   
-  .post .image {
+  .post .image-container {
     width: 100%;
     height: 150px;
     margin: 0.5rem 0 1rem 0;
     background-color: burlywood;
+    overflow: hidden;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
   }
   
 

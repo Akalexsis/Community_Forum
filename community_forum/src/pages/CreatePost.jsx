@@ -16,6 +16,7 @@ const CreatePost = () => {
             date: '',
             location: '',
             desc: '',
+            image: '',
             likes: 0
         });
 
@@ -23,14 +24,12 @@ const CreatePost = () => {
     const updateForm = () => {
         if (formData) {
             setUserInput( { name: formData.name, date: formData.date, location: formData.location, desc: formData.desc, 
-                likes: formData.likes } )
+                image: formData.image, likes: formData.likes } )
         } else {
-            setUserInput( { name: '', date: '', location: '', desc: '', likes: 0 } )
+            setUserInput( { name: '', date: '', location: '', desc: '', image: '', likes: 0 } )
         }
     }
     useEffect(() => { updateForm() }, [])
-
-    console.log(userInput)
 
     // updates user input as input entered
     const handleInput = (e) => {
@@ -40,7 +39,6 @@ const CreatePost = () => {
     // make POST or PUT request to supabase
     const onCreate = async (e) => {
         e.preventDefault();
-
         try {
             // if content in formData, update event, else - create new event
             if (formData) {
@@ -48,11 +46,9 @@ const CreatePost = () => {
                 // console.log(data)
                 console.log(error)
                 alert('Your post has been updated!');
-                
             } else {
                 // make API call to database to make new event post
                 const { data, error } = await supabase.from('posts').insert(userInput).select();
-                // console.log(data)
                 console.log(error)
                 alert('Your post has been created!');
             }
@@ -60,7 +56,7 @@ const CreatePost = () => {
             alert('There was an error when making your post. Please try again.');
         }
         // clear form
-        setUserInput({ name: '', date: '', location: '', desc: '', likes: 0 });
+        setUserInput({ name: '', date: '', location: '', desc: '', image: '', likes: 0 });
     }
 
     return(
@@ -68,14 +64,16 @@ const CreatePost = () => {
             
             <form className='create-event'>
                 <h2>Create Your Event!</h2>
-                <label htmlFor="name"> Name </label>
-                <input type="text" name='name' placeholder='Name of event' value={userInput.name} onChange={handleInput} required/>
-                <label htmlFor="date"> Date </label>
-                <input type="date" name='date' value={userInput.date} onChange={handleInput}/>
-                <label htmlFor="location"> Location </label>
-                <input type="text" name='location' placeholder='Event location' value={userInput.location} onChange={handleInput} required/>
-                <label htmlFor="desc"> Description </label>
-                <input type="text" name='desc' placeholder='Description' value={userInput.desc} onChange={handleInput} required/>
+                    <label htmlFor="name"> Name </label>
+                    <input type="text" name='name' placeholder='Name of event' value={userInput.name} onChange={handleInput} required/>
+                    <label htmlFor="date"> Date </label>
+                    <input type="date" name='date' value={userInput.date} onChange={handleInput}/>
+                    <label htmlFor="location"> Location </label>
+                    <input type="text" name='location' placeholder='Event location' value={userInput.location} onChange={handleInput} required/>
+                    <label htmlFor="desc"> Description </label>
+                    <input type="text" name='desc' placeholder='Description' value={userInput.desc} onChange={handleInput} required/>
+                    <label htmlFor="image"> Image </label>
+                    <input type="text" name='image' placeholder='Image URL' value={userInput.image} onChange={handleInput} required/>
                 <button onClick={onCreate}> Create </button>
             </form>
         </div>
